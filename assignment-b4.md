@@ -146,9 +146,9 @@ Rearrangement component:
 
 1.  For words that end in a consonant, take the group of characters from
     the last vowel of the word to the last consonant, and move it to the
-    front (for example, cows becomes owsc). If the word has no vowel
-    (including “y”), then leave the word as it is until the addition
-    component below.  
+    front (for example, c<ins>ows</ins> becomes <ins>owsc</ins>). If the
+    word has no vowel (including “y”), then leave the word as it is
+    until the addition component below.  
 2.  For words that end in vowels, move only the last vowel to the front.
 
 <ins>
@@ -166,7 +166,9 @@ Addition component:
     rare “words” with no vowels (e.g., mrs).
 
 *Note: For the purposes of this made-up language, ‘y’ is always
-considered a vowel.* \### Implementation
+considered a vowel.*
+
+### Implementation
 
 ``` r
 #' @title Cow Latin Translator
@@ -336,7 +338,7 @@ test_that("Invalid words throw an error", {
           })
 ```
 
-    ## Test passed 😀
+    ## Test passed 🎉
 
 #### Test 2
 
@@ -350,7 +352,7 @@ test_that("Words with no vowels translate correctly", {
           })
 ```
 
-    ## Test passed 🥇
+    ## Test passed 😸
 
 #### Test 3
 
@@ -369,7 +371,7 @@ test_that("Words with vowels that end in consonants translate correctly", {
           })
 ```
 
-    ## Test passed 🥇
+    ## Test passed 🎊
 
 #### Test 4
 
@@ -402,4 +404,4 @@ test_that("Length of output is same as length of input", {
           })
 ```
 
-    ## Test passed 🌈
+    ## Test passed 😸

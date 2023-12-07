@@ -107,7 +107,7 @@ In this exercise, we make a function that converts words into our own version of
 
 <ins>Rearrangement component:</ins>
 
-1. For words that end in a consonant, take the group of characters from the last vowel of the word to the last consonant, and move it to the front (for example, cows becomes owsc). If the word has no vowel (including "y"), then leave the word as it is until the addition component below.  
+1. For words that end in a consonant, take the group of characters from the last vowel of the word to the last consonant, and move it to the front (for example, c<ins>ows</ins> becomes <ins>ows</ins>c). If the word has no vowel (including "y"), then leave the word as it is until the addition component below.  
 2. For words that end in vowels, move only the last vowel to the front.
 
 <ins>Addition component:</ins>
@@ -118,6 +118,7 @@ In this exercise, we make a function that converts words into our own version of
 
 
 _Note: For the purposes of this made-up language, 'y' is always considered a vowel._ 
+
 ### Implementation
 
 ```{r}
