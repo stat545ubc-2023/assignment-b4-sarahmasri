@@ -8,8 +8,8 @@ This repository includes the completion of the following two exercised from Assi
 
 ## Files:
 - **README.md**: This file.
-- **assignment-b4.Rmd**: Completion and testing of `count_groups` as required for Assignment B-1. An R Markdown file. 
-- **assignment-b4.md**: A "knitted" version of assignment-b1.Rmd to a readable markdown file.
+- **assignment-b4.Rmd**: Completion of exercises 1 and 2. 
+- **assignment-b4.md**: A "knitted" version of assignment-b4.Rmd to a readable markdown file.
 - **assignment-b4_files/figure-gfm**: The png of the plot needed in assignment-b4.md.
 
 ## Author
