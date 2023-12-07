@@ -137,7 +137,7 @@ pp_words_count %>% slice(1:n) %>% ggplot(aes(x = reorder(word, desc(count)), y =
 ## Exercise 2
 
 In this exercise, we make a function that converts words into our own
-version of Pig Latin. Call this new made-up language Cow Latin. The Cow
+version of Pig Latin. Call this new made-up language Cow Latin. Cow
 Latin consists of two components:
 
 <ins>
@@ -146,7 +146,7 @@ Rearrangement component:
 
 1.  For words that end in a consonant, take the group of characters from
     the last vowel of the word to the last consonant, and move it to the
-    front (for example, c<ins>ows</ins> becomes <ins>owsc</ins>). If the
+    front (for example, c<ins>ows</ins> becomes <ins>ows</ins>c). If the
     word has no vowel (including “y”), then leave the word as it is
     until the addition component below.  
 2.  For words that end in vowels, move only the last vowel to the front.
@@ -221,9 +221,7 @@ Cow_Latin <- function(words_list) {
   ## Rearrangement 2: For words that end in vowels, move last vowel to the beginning. 
   cow_words[ends_vow] <- str_c(str_sub(words_list[ends_vow], -1, -1), str_sub(words_list[ends_vow] , 1, -2))
     
-  
-  ## Addition 3: For rare words with no vowels, add "moo" to beginning.
-  # cow_words[is.na(cow_words)] <- str_c("moo", words_list[is.na(cow_words)])
+  ## Replace missing values corresponding to rare "words" with no vowels. 
   cow_words[is.na(cow_words)] <- words_list[is.na(cow_words)]
   
   ## Detect rearranged words that end with consonants and vowels, or have no vowels separately.
@@ -338,7 +336,7 @@ test_that("Invalid words throw an error", {
           })
 ```
 
-    ## Test passed 🎉
+    ## Test passed 🌈
 
 #### Test 2
 
@@ -352,7 +350,7 @@ test_that("Words with no vowels translate correctly", {
           })
 ```
 
-    ## Test passed 😸
+    ## Test passed 😀
 
 #### Test 3
 
@@ -371,7 +369,7 @@ test_that("Words with vowels that end in consonants translate correctly", {
           })
 ```
 
-    ## Test passed 🎊
+    ## Test passed 😸
 
 #### Test 4
 
@@ -389,7 +387,7 @@ test_that("Words that end in vowels translate correctly", {
           })
 ```
 
-    ## Test passed 🥇
+    ## Test passed 🌈
 
 #### Test 5
 
@@ -404,4 +402,4 @@ test_that("Length of output is same as length of input", {
           })
 ```
 
-    ## Test passed 😸
+    ## Test passed 🎊
