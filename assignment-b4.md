@@ -27,7 +27,7 @@ We first choose the book Pride & Prejudice, contained in the
 6.  Persuasion
 
 ``` r
-## Select book field from  janeaustenr::austen_books() to find all unique books available in the janeaustenr package
+## Select book field from janeaustenr::austen_books() to find all unique books available in the janeaustenr package
 books <- austen_books() %>% select(book) %>% unique()
 print(books)
 ```
@@ -56,8 +56,8 @@ has the following properties:
   string, and not a sentence or group of words)
 
 Note that words with different tenses, punctuation, or plurality will be
-considered different. For example, “daughter’s” is distinct from
-“daughter” and “observing” is considered distince from “observe”.
+regarded as distinct words. For example, “daughter’s” is distinct from
+“daughter” and “observing” is considered distinct from “observe”.
 
 ``` r
 ## Create a tibble of words in Pride and Prejudice. 
@@ -84,8 +84,8 @@ head(pp_words)
     ## 6 austen
 
 Now that we have a list of *all* words in Pride & Prejudice, we may
-remove “stop words” using `tidetext::stop_words` and summarise the
-number of time each word appears in the the book.
+remove any “stop words” using `tidetext::stop_words` and summarise the
+number of times each word appears in the the book.
 
 ``` r
 ## Create list of stop words
@@ -94,7 +94,7 @@ to_remove <- stop_words %>%
              .[[1]] %>%                     ## get list of words
              str_remove_all("[^a-zA-Z]")    ## remove all all non-letters from words to match words in pp_words 
 
-## Create a list of words in Pride and Prejudice, excluding stop words. 
+## Create a tibble of words in Pride and Prejudice, excluding stop words. 
 pp_words_count <- pp_words %>% 
                   filter(!word %in% to_remove)  %>% ## filter out stop words
                   group_by(word) %>%                ## group data by word
@@ -137,8 +137,8 @@ pp_words_count %>% slice(1:n) %>% ggplot(aes(x = reorder(word, desc(count)), y =
 ## Exercise 2
 
 In this exercise, we make a function that converts words into our own
-version of Pig Latin. Call this new made-up language Horse Latin. The
-Cow Latin consists of two components:
+version of Pig Latin. Call this new made-up language Cow Latin. The Cow
+Latin consists of two components:
 
 <ins>
 Rearrangement component:
@@ -169,9 +169,9 @@ Addition component:
 considered a vowel.* \### Implementation
 
 ``` r
-#' @title Horse Latin Translator
+#' @title Cow Latin Translator
 #' 
-#' @description This function converts a word or list of words into Horse Latin.
+#' @description This function converts a word or list of words into Cow Latin.
 #' Translation works in two components:
 #' 
 #' 1. Rearrangement
@@ -192,13 +192,13 @@ considered a vowel.* \### Implementation
 #' @param words_list A string or list of strings. Each string must only contain 
 #' letter characters with no white space, numbers, or punctuation.  
 #' 
-#' @return A list of strings with each element being the translated Horse Latin 
+#' @return A list of strings with each element being the translated Cow Latin 
 #' word corresponding to the words_list parameter. All characters are returned 
 #' in lower case.
 #' 
 #' @import tidyverse
 #' @export
-Horse_Latin <- function(words_list) {
+Cow_Latin <- function(words_list) {
   ## Check that each word in words_list is made up of only letters.
   if(!all(str_detect(words_list, "^[:alpha:]+$"))) {
     stop("Please ensure all words are made up of only letters (remove any white space, numbers, punctuation, etc.)")
@@ -250,79 +250,77 @@ Horse_Latin <- function(words_list) {
 
 #### Example 1
 
-This example illustrates `Horse_Latin()` for a word with a single
+This example illustrates `Cow_Latin()` for a word with a single
 character.
 
 ``` r
-Horse_Latin("a")
+Cow_Latin("a")
 ```
 
     ## [1] "mamoo"
 
 #### Example 2
 
-This example illustrates `Horse_Latin()` for rare “words” with no
-vowels.
+This example illustrates `Cow_Latin()` for rare “words” with no vowels.
 
 ``` r
-Horse_Latin(c("mrs", "mr"))
+Cow_Latin(c("mrs", "mr"))
 ```
 
     ## [1] "moomrsoo" "moomroo"
 
 #### Example 3
 
-This example illustrates `Horse_Latin()` for words ending in a
-consonant.
+This example illustrates `Cow_Latin()` for words ending in a consonant.
 
 ``` r
-Horse_Latin(c("pig", "latin", "dataset", "eleven"))
+Cow_Latin(c("pig", "latin", "dataset", "eleven"))
 ```
 
     ## [1] "migpoo"     "minlatoo"   "metdatasoo" "menelevoo"
 
 #### Example 4
 
-This example illustrates `Horse_Latin()` for words ending in a vowel
+This example illustrates `Cow_Latin()` for words ending in a vowel
 
 ``` r
-Horse_Latin(c("horse", "data", "example"))
+Cow_Latin(c("Cow", "data", "example"))
 ```
 
-    ## [1] "mehorsoo"   "madatoo"    "meexamploo"
+    ## [1] "mowcoo"     "madatoo"    "meexamploo"
 
 #### Example 5
 
-This example illustrates `Horse_Latin()` for words with capitol letters.
+This example illustrates `Cow_Latin()` for words with capitol letters.
 
 ``` r
-Horse_Latin(c("A", "Balance", "HELLO"))
+Cow_Latin(c("A", "Balance", "HELLO"))
 ```
 
     ## [1] "mamoo"      "mebalancoo" "mohelloo"
 
 #### Example 5
 
-This example illustrates `Horse_Latin()` the error thrown when
-attempting to use the function with invalid words.
+This example illustrates `Cow_Latin()` the error thrown when attempting
+to use the function with invalid words.
 
 ``` r
-Horse_Latin("")
+Cow_Latin("")
 ```
 
-    ## Error in Horse_Latin(""): Please ensure all words are made up of only letters (remove any white space, numbers, punctuation, etc.)
+    ## Error in Cow_Latin(""): Please ensure all words are made up of only letters (remove any white space, numbers, punctuation, etc.)
 
 ``` r
-Horse_Latin("This is a sentence")
+Cow_Latin("This is a sentence")
 ```
 
-    ## Error in Horse_Latin("This is a sentence"): Please ensure all words are made up of only letters (remove any white space, numbers, punctuation, etc.)
+    ## Error in Cow_Latin("This is a sentence"): Please ensure all words are made up of only letters (remove any white space, numbers, punctuation, etc.)
 
 ``` r
-Horse_Latin(c("Hello!", "hello"))
+Cow_Latin(c("Hello!", "hello"))
 ```
 
-    ## Error in Horse_Latin(c("Hello!", "hello")): Please ensure all words are made up of only letters (remove any white space, numbers, punctuation, etc.)
+    ## Error in Cow_Latin(c("Hello!", "hello")): Please ensure all words are made up of only letters (remove any white space, numbers, punctuation, etc.)
 
 ### Tests
 
@@ -332,9 +330,9 @@ Check that invalid words throw an error.
 
 ``` r
 test_that("Invalid words throw an error", {
-  expect_error(Horse_Latin(""))                             ## Empty string
-  expect_error(Horse_Latin("Hi!"))                          ## Invalid punctuation character, "!"
-  expect_error(Horse_Latin("A sentence with spaces"))       ## Includes white space
+  expect_error(Cow_Latin(""))                             ## Empty string
+  expect_error(Cow_Latin("Hi!"))                          ## Invalid punctuation character, "!"
+  expect_error(Cow_Latin("A sentence with spaces"))       ## Includes white space
           })
 ```
 
@@ -347,12 +345,12 @@ Check rare “words” with no vowels. The rule for these words is to add
 
 ``` r
 test_that("Words with no vowels translate correctly", {
-  expect_equal(Horse_Latin("msr"), "moomsroo")   
-  expect_equal(Horse_Latin("brb"), "moobrboo")
+  expect_equal(Cow_Latin("msr"), "moomsroo")   
+  expect_equal(Cow_Latin("brb"), "moobrboo")
           })
 ```
 
-    ## Test passed 🌈
+    ## Test passed 🥇
 
 #### Test 3
 
@@ -365,13 +363,13 @@ rearranged word is a consonant then add “oo” to the end.
 
 ``` r
 test_that("Words with vowels that end in consonants translate correctly", {
-  expect_equal(Horse_Latin("Latin"), "minlatoo")         ## ends in consonant immediately after a vowel
-  expect_equal(Horse_Latin("UBC"), "mubcoo")             ## ends in consonant immediately after consonant
-  expect_equal(Horse_Latin("steer"), "merstemoo")        ## ends in consonant immediately after more than one vowels
+  expect_equal(Cow_Latin("Latin"), "minlatoo")         ## ends in consonant immediately after a vowel
+  expect_equal(Cow_Latin("UBC"), "mubcoo")             ## ends in consonant immediately after consonant
+  expect_equal(Cow_Latin("steer"), "merstemoo")        ## ends in consonant immediately after more than one vowels
           })
 ```
 
-    ## Test passed 🎊
+    ## Test passed 🥇
 
 #### Test 4
 
@@ -383,13 +381,13 @@ a consonant then add “oo” to the end.
 
 ``` r
 test_that("Words that end in vowels translate correctly", {
-  expect_equal(Horse_Latin("Horse"), "mehorsoo")      ## ends in vowel and starts with capitol  
-  expect_equal(Horse_Latin("data"), "madatoo")        ## ends in vowel
-  expect_equal(Horse_Latin("woohoo"), "mowoohomoo")   ## ends with more than one vowel
+  expect_equal(Cow_Latin("horse"), "mehorsoo")      ## ends in vowel and starts with capitol  
+  expect_equal(Cow_Latin("data"), "madatoo")        ## ends in vowel
+  expect_equal(Cow_Latin("woohoo"), "mowoohomoo")   ## ends with more than one vowel
           })
 ```
 
-    ## Test passed 😀
+    ## Test passed 🥇
 
 #### Test 5
 
@@ -398,9 +396,9 @@ the output should be the same as the input.
 
 ``` r
 test_that("Length of output is same as length of input", {
-  expect_equal(length(Horse_Latin(c())), 0)                                           ## empty list
-  expect_equal(length(Horse_Latin(c("This", "list", "has", "five", "words"))), 5)     ## small list
-  expect_equal(length(Horse_Latin(words)), length(words))                             ## large list
+  expect_equal(length(Cow_Latin(c())), 0)                                           ## empty list
+  expect_equal(length(Cow_Latin(c("This", "list", "has", "five", "words"))), 5)     ## small list
+  expect_equal(length(Cow_Latin(words)), length(words))                             ## large list
           })
 ```
 
