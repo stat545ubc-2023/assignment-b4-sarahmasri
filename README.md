@@ -4,7 +4,7 @@ STAT 545B
 This repository includes the completion of the following two exercised from Assignmnet B-4 Option A. 
 
 1. Exercise 1: Plotting the most common words from Jane Austen's _Pride and Prejudice_:
-2. Exercise 2: Imlpementing the function `Horse_Latin()` that converts words to a new version of Pig Latin called Cow Latin. 
+2. Exercise 2: Imlpementing the function `Cow_Latin()` that converts words to a new version of Pig Latin called Cow Latin. 
 
 ## Files:
 - **README.md**: This file.
