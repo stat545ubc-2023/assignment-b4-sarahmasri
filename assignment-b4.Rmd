@@ -103,7 +103,7 @@ pp_words_count %>% slice(1:n) %>% ggplot(aes(x = reorder(word, desc(count)), y =
 
 ## Exercise 2
 
-In this exercise, we make a function that converts words into our own version of Pig Latin. Call this new made-up language Cow Latin. The Cow Latin consists of two components:
+In this exercise, we make a function that converts words into our own version of Pig Latin. Call this new made-up language Cow Latin. Cow Latin consists of two components:
 
 <ins>Rearrangement component:</ins>
 
@@ -172,9 +172,7 @@ Cow_Latin <- function(words_list) {
   ## Rearrangement 2: For words that end in vowels, move last vowel to the beginning. 
   cow_words[ends_vow] <- str_c(str_sub(words_list[ends_vow], -1, -1), str_sub(words_list[ends_vow] , 1, -2))
     
-  
-  ## Addition 3: For rare words with no vowels, add "moo" to beginning.
-  # cow_words[is.na(cow_words)] <- str_c("moo", words_list[is.na(cow_words)])
+  ## Replace missing values corresponding to rare "words" with no vowels. 
   cow_words[is.na(cow_words)] <- words_list[is.na(cow_words)]
   
   ## Detect rearranged words that end with consonants and vowels, or have no vowels separately.
